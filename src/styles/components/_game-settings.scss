@@ -1,0 +1,143 @@
+@use '../abstract/mixins' as mx;
+
+.settings {
+    background-color: #FFFFFF;
+    padding-top: 114px;
+
+    &__headline {
+        font-family: 'Red Rose';
+        font-size: 2em;
+        margin: 0;
+        padding-left: 16px;
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px 16px;
+    padding-bottom: 16px;
+    font-family: 'Almarai';
+    padding-bottom: 250px;
+    flex-direction: column;
+
+    @include mx.respond(md) {
+        flex-direction: row;
+        padding: 64px 16px;
+    }
+}
+
+.headline-wrapper {
+    padding-left: 32px;
+    display: flex;
+    flex-direction: column;
+
+    @include mx.respond(sm) {
+        padding-left: 64px;
+    }
+
+    @include mx.respond(md) {
+        padding-left: 170px;
+    }
+}
+
+.underline {
+    width: 200px;
+
+    @include mx.respond(lg) {
+        width: 250px;
+    }
+}
+
+.nav-headline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    img {
+        width: 32px;
+        height: 32px;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        margin: 0;
+    }
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 64px;
+}
+
+li {
+    display: flex;
+    width: fit-content;
+    gap: 12px;
+    align-items: center;
+    height: 20px;
+    margin-bottom: 14px;
+    cursor: pointer;
+
+    &:hover {
+        font-weight: 700;
+
+        .list-style {
+            background-image: url('../../../assets/img/list-circle-active.png');
+        }
+
+        .list-line {
+            width: 50px;
+            height: 15px;
+            background-image: url('../../../assets/img/list-line.png');
+        }
+
+    }
+}
+
+.list-style {
+    width: 20px;
+    height: 20px;
+    background-image: url('../../../assets/img/list-circle.png');
+}
+
+.selection-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 45px;
+}
+
+.choosen-settings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F6F6F6;
+    padding: 0.5rem;
+    font-size: 1em;
+    gap: 6px;
+
+    @include mx.respond(md) {
+        gap: 16px;
+    }
+}
+
+.play-btn {
+    gap: 6px;
+    padding: 0.5rem;
+}
+
+.preview-theme {
+    width: 100%;
+
+    @include mx.respond(md) {
+        width: unset;
+    }
+}
+
+.seperator{
+    height: 30px;
+        @include mx.respond(md) {
+        height: unset;
+    }
+}

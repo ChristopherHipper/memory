@@ -1,0 +1,43 @@
+@use '../abstract/mixins' as mx;
+
+body {
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+
+    @include mx.respond(md) {
+        font-size: 20px;
+    }
+
+        @include mx.respond(lg) {
+        font-size: 24px;
+    }
+
+}
+
+.hidden {
+    display: none;
+}
+
+p {
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-family: 'Red Rose';
+    font-weight: 700;
+}
+
+section {
+    padding: 0px max(calc(50% - 720px), 0px);
+    box-sizing: border-box;
+    height: 100vh;
+}

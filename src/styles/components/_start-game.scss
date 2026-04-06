@@ -1,0 +1,63 @@
+@use '../abstract/mixins' as mx;
+
+.start {
+    background-color: #303131;
+    color: #FFFFFF;
+    font-family: 'Red Rose';
+    @include mx.flex-center();
+
+    &__headline {
+        font-size: 5em;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    &__text {
+        font-size: 1.5em;
+    }
+}
+
+.start-game-btn {
+    @include mx.flex-center(row);
+    padding: 1rem;
+    gap: 20px;
+    background-color: #F0EA6E;
+    font-size: 1em;
+    transition: all 0.2s ease-in-out;
+    z-index: 1;
+
+    .controler {
+        transition: all 0.2s ease-in-out;
+    }
+
+    .arrow {
+        transition: all 0.2s ease-in-out;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+
+        .controler {
+            transform: rotate(-40deg);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .arrow {
+            transform: scale(1.3);
+            transition: all 0.2s ease-in-out;
+        }
+    }
+}
+
+.bg-controler {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0px max(calc(50% - 720px), 0px);
+
+    width: 300px;
+
+    @include mx.respond(sm) {
+        width: unset;
+    }
+}

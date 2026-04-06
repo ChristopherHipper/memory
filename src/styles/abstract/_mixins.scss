@@ -1,0 +1,14 @@
+@use './variables' as var;
+
+@mixin flex-center($direction: column) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: $direction;
+}
+
+@mixin respond($size) {
+    @media screen and (min-width: map-get(var.$breakpoints, $size)) {
+        @content;
+    }
+}
