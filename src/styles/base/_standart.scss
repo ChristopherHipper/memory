@@ -1,9 +1,6 @@
 @use '../abstract/mixins' as mx;
 
 body {
-    height: 100vh;
-    height: 100dvh;
-    width: 100%;
     margin: 0;
     box-sizing: border-box;
 }
@@ -15,7 +12,7 @@ html {
         font-size: 20px;
     }
 
-        @include mx.respond(lg) {
+    @include mx.respond(lg) {
         font-size: 24px;
     }
 
@@ -32,12 +29,17 @@ p {
 button {
     cursor: pointer;
     border: none;
-    font-family: 'Red Rose';
-    font-weight: 700;
+    background-color: transparent;
 }
 
-section {
-    padding: 0px max(calc(50% - 720px), 0px);
-    box-sizing: border-box;
-    height: 100vh;
+fieldset {
+    margin: 0;
+    border: 0;
+    padding: 0;
 }
+
+label {
+    cursor: pointer;
+}
+
+

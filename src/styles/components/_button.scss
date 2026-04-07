@@ -1,0 +1,11 @@
+@use '../abstract/mixins' as mx;
+
+.primary-btn {
+    @include mx.flex-center(row);
+    padding: 1rem;
+    gap: 20px;
+    background-color: #F0EA6E;
+    font-size: 1em;
+    transition: all 0.2s ease-in-out;
+    z-index: 1;
+}

@@ -1,16 +1,13 @@
 import './styles/style.scss';
 
+document.addEventListener("DOMContentLoaded", init);
+const startBtn = document.getElementById('start-btn');
 
-const startScreen = document.getElementById('start-screen')!;
-const settingsScreen = document.getElementById('settings-screen')!;
-const gameScreen = document.getElementById('game-screen')!;
+function init(): void {
+  startBtn!.addEventListener('click', () => {
+    window.location.href = './src/pages/settings.html';
+  });
 
-document.getElementById('start-btn')!.addEventListener('click', () => {
-  startScreen.classList.add('hidden');
-  settingsScreen.classList.remove('hidden');
-});
+}
 
-document.getElementById('settings-start-btn')?.addEventListener('click', () => {
-  settingsScreen.classList.add('hidden');
-  gameScreen.classList.remove('hidden');
-});
+
