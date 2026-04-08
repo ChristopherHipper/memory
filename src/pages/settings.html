@@ -17,11 +17,12 @@
         <main class="content">
 
             <form class="form">
-                <fieldset class="form__list">
-                    <legend class="form__list-headline"><img src="../../assets/img/game-theme-icon.png" alt="theme icon">Game Theme</legend>
+                <fieldset class="form__list" id="theme">
+                    <legend class="form__list-headline"><img src="../../assets/img/game-theme-icon.png"
+                            alt="theme icon">Game Theme</legend>
                     <label class="form__label">
                         <input type="radio" name="theme" value="code">
-                        Code vibes theme
+                        Code theme
                         <div class="line"></div>
                     </label>
 
@@ -38,8 +39,9 @@
                     </label>
                 </fieldset>
 
-                <fieldset class="form__list">
-                    <legend class="form__list-headline"><img src="../../assets/img/choose-player-icon.png" alt="player icon">Choose Player</legend>
+                <fieldset class="form__list" id="player">
+                    <legend class="form__list-headline"><img src="../../assets/img/choose-player-icon.png"
+                            alt="player icon">Choose Player</legend>
                     <label class="form__label">
                         <input type="radio" name="player" value="blue">
                         Blue
@@ -53,8 +55,9 @@
                     </label>
                 </fieldset>
 
-                <fieldset class="form__list">
-                    <legend class="form__list-headline"><img src="../../assets/img/board-size-icon.png" alt="board icon">Board size</legend>
+                <fieldset class="form__list" id="field">
+                    <legend class="form__list-headline"><img src="../../assets/img/board-size-icon.png"
+                            alt="board icon">Board size</legend>
                     <label class="form__label">
                         <input type="radio" name="field" value="16">
                         16 cards
@@ -75,20 +78,10 @@
                 </fieldset>
             </form>
 
-            <div class="selection-wrapper">
-                <img class="preview-theme" src="../../assets/img/coding-theme.png" alt="choosen Theme">
-                <div class="choosen-settings">
-                    <p>Game theme</p>
-                    <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
-                    <p>Player</p>
-                    <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
-                    <p>Board size</p>
-                    <button class="primary-btn">
-                        <img class="controler" src="../../assets/img/start.png" alt="start">
-                        Start
-                    </button>
-                </div>
+            <div class="selection-wrapper" id="settings">
+        
             </div>
+            
         </main>
 
 

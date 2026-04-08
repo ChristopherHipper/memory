@@ -104,6 +104,10 @@
     flex-direction: column;
     align-items: center;
     gap: 45px;
+
+    @include mx.respond(lg) {
+        min-width: 760px;
+    }
 }
 
 .choosen-settings {
@@ -114,15 +118,12 @@
     padding: 0.5rem;
     font-size: 1em;
     gap: 6px;
+    flex-direction: column;
 
     @include mx.respond(md) {
+        flex-direction: row;
         gap: 16px;
     }
-}
-
-.play-btn {
-    gap: 6px;
-    padding: 0.5rem;
 }
 
 .preview-theme {
@@ -138,6 +139,37 @@
 
     @include mx.respond(md) {
         height: unset;
+    }
+}
+
+.game-btn {
+    z-index: 1;
+    .start-img {
+        transition: all 0.2s ease-in-out;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+
+        .start-img {
+            transform: rotate(-40deg);
+            transition: all 0.2s ease-in-out;
+        }
+    }
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: auto;
+    background-color: #DBDBD6;
+
+    &:hover {
+        transform: scale(1.0);
+
+        .start-img {
+            transform: rotate(0deg);
+            transition: all 0.2s ease-in-out;
+        }
     }
 }
 

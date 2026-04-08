@@ -1,84 +1,98 @@
 import '../styles/style.scss';
-
+import { Settings } from './interface';
 
 document.addEventListener("DOMContentLoaded", init);
+const previewSettings = document.getElementById('settings');
+
+let gameSettings: Settings = {
+    theme: "",
+    player: "",
+    field: "",
+};
 
 function init(): void {
     const form = document.querySelector("form");
     if (form) {
-        form.addEventListener('click', (e) => {
-            const label = (e.target as HTMLElement).closest("label") as HTMLLabelElement;
-            const field = label.parentElement;
-            console.log(field);
-            
-            const line = label.querySelector(".line")
-            if (line) {
-                line.classList.add('active');
-            }
-        })
-    }
+        form.addEventListener('click', (e) => { selectSettings(e) });
+    };
+    if (previewSettings) {
+        previewSettings.innerHTML = settingsTemplate();
+    };
+};
 
+function selectSettings(e: PointerEvent): void {
+    if (e.target) {
+        const label = (e.target as HTMLElement).closest("label") as HTMLLabelElement;
+        if (label) {
+            if (label.parentElement) {
+                const fieldset = label.parentElement;
+                if (fieldset) {
+                    setSelectClass(fieldset, label);
+                    setGameSetting(label);
+                    setBtnState();
+                };
+            };
+        };
+    };
+};
 
-}
-
-
-document.addEventListener("DOMContentLoaded", init)
-const previewSettings = document.getElementById('settings')
-const previewImg = document.getElementById('img')
-
-let gameSettings = {
-    theme: "Code vibes theme",
-    player: "Blue",
-    field: "16 cards",
-}
-
-
-function init() {
-    const form = document.querySelector("form");
-    if (form) {
-        form.addEventListener('click', (e) => { selectSettings(e) })
-    }
-    previewSettings.innerHTML = displaySetting();
-}
-
-function selectSettings(e) {
-    const label = (e.target).closest("label");
-    const fieldset = label.parentElement;
-    const activeImges = fieldset.querySelectorAll(".active")
+function setSelectClass(fieldset: HTMLElement, label: HTMLLabelElement): void {
+    const activeImges = fieldset.querySelectorAll(".active");
     activeImges.forEach(img => {
-        img.classList.remove('active')
+        img.classList.remove('active');
     });
-    const img = label.querySelector(".line")
+    const img = label.querySelector(".line");
     if (img) {
         img.classList.add('active');
-    }
-    setGameSetting(label);
-}
+    };
+};
 
-function setGameSetting(label) {
-    const value = label.innerText;
-    const listId = label.parentElement.id;
-    if (listId === "field") {
-        gameSettings.field = value;
-    } else if (listId === "theme") {
-        gameSettings.theme = value;
-    } else if (listId === "player"){
-        gameSettings.player = value
-    } else {
-        return
-    }
-    previewSettings.innerHTML = displaySetting()
-}
+function setGameSetting(label: HTMLLabelElement): void {
+    if (label.parentElement) {
+        const value = label.innerText;
+        const valueArr = value.split(" ");
+        const listId = label.parentElement.id;
+        if (listId === "field") {
+            gameSettings.field = value;
+        } else if (listId === "theme") {
+            gameSettings.theme = valueArr[0];
+        } else if (listId === "player") {
+            gameSettings.player = value;
+        } else {
+            return
+        };
+        if (previewSettings) {
+            previewSettings.innerHTML = settingsTemplate();
+        };
+    };
+};
 
-function displaySetting() {
-    return `         <p>${gameSettings.theme}</p>
-                    <div>/</div>
-                    <p>${gameSettings.player}</p>
-                    <div>/</div>
-                    <p>${gameSettings.field}</p>
-                    <div>/</div>
-                    <button id="start-game-btn" class="start-game-btn play-btn">
-                        Start
-                    </button>
-                `
-}
+function setBtnState(): void {
+    const gameBtn = document.getElementById('game-btn');
+    if (gameBtn) {
+        if (gameSettings.field && gameSettings.player && gameSettings.theme) {
+            (gameBtn as HTMLButtonElement).disabled = false;
+            gameBtn.addEventListener('click', startGame);
+        };
+    };
+};
+
+function settingsTemplate(): string {
+    return `<img class="preview-theme" src="../../assets/img/${gameSettings.theme.toLocaleLowerCase()}-theme.png" alt="choosen Theme">
+            <div class="choosen-settings" >
+                <p>${gameSettings.theme} Theme</p>
+                <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
+                <p>${gameSettings.player} Player</p>
+                <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
+                <p>Board ${gameSettings.field}</p>
+                <button disabled class="primary-btn game-btn" id="game-btn">
+                    <img class="start-img" src="../../assets/img/start.png" alt="start">
+                    Start
+                </button>
+             </div>
+        `
+};
+
+function startGame() {
+    window.location.href = './game.html';
+};
