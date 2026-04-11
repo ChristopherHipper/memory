@@ -1,0 +1,24 @@
+@use '../abstract/mixins' as mx;
+
+.game {
+    padding: 41px max(calc(50% - 720px), 0px);
+}
+
+header {
+    @include mx.flex-between();
+    padding: 0 110px;
+
+    .players-wrapper {
+        @include mx.flex-gap(40px);
+        padding: 13px 16px;
+        >div{
+            @include mx.flex-gap(8px);
+            align-items: center;
+        }
+    }
+
+    .current-player {
+        @include mx.flex-gap(18px);
+        align-items: center;
+    }
+}

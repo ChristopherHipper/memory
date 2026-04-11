@@ -7,6 +7,19 @@
     flex-direction: $direction;
 }
 
+@mixin flex-between() {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-gap($value) {
+    display: flex;
+    gap: $value;
+}
+
+
+
 @mixin respond($size) {
     @media screen and (min-width: map-get(var.$breakpoints, $size)) {
         @content;

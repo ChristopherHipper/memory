@@ -2,7 +2,7 @@ import '../styles/style.scss';
 import { Settings } from './interface';
 
 document.addEventListener("DOMContentLoaded", init);
-const previewSettings = document.getElementById('settings');
+const previewSettings = document.getElementById('settings') as HTMLElement;
 
 let gameSettings: Settings = {
     theme: "",
@@ -11,7 +11,7 @@ let gameSettings: Settings = {
 };
 
 function init(): void {
-    const form = document.querySelector("form");
+    const form = document.querySelector("form") as HTMLFormElement;
     if (form) {
         form.addEventListener('click', (e) => { selectSettings(e) });
     };
@@ -55,9 +55,9 @@ function setGameSetting(label: HTMLLabelElement): void {
         if (listId === "field") {
             gameSettings.field = value;
         } else if (listId === "theme") {
-            gameSettings.theme = valueArr[0];
+            gameSettings.theme = valueArr[0].toLocaleLowerCase();
         } else if (listId === "player") {
-            gameSettings.player = value;
+            gameSettings.player = value.toLocaleLowerCase();
         } else {
             return
         };
@@ -68,19 +68,19 @@ function setGameSetting(label: HTMLLabelElement): void {
 };
 
 function setBtnState(): void {
-    const gameBtn = document.getElementById('game-btn');
+    const gameBtn = document.getElementById('game-btn') as HTMLButtonElement;
     if (gameBtn) {
         if (gameSettings.field && gameSettings.player && gameSettings.theme) {
-            (gameBtn as HTMLButtonElement).disabled = false;
+            (gameBtn).disabled = false;
             gameBtn.addEventListener('click', startGame);
         };
     };
 };
 
 function settingsTemplate(): string {
-    return `<img class="preview-theme" src="../../assets/img/${gameSettings.theme.toLocaleLowerCase()}-theme.png" alt="choosen Theme">
+    return `<img class="preview-theme" src="../../assets/img/${gameSettings.theme}-theme.png" alt="choosen Theme">
             <div class="choosen-settings" >
-                <p>${gameSettings.theme} Theme</p>
+                <p>${gameSettings.theme.charAt(0).toUpperCase()+ gameSettings.theme.slice(1)} Theme</p>
                 <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
                 <p>${gameSettings.player} Player</p>
                 <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
@@ -94,5 +94,8 @@ function settingsTemplate(): string {
 };
 
 function startGame() {
+    localStorage.setItem('theme',gameSettings.theme);
+    localStorage.setItem('player',gameSettings.player);
+    localStorage.setItem('field',gameSettings.field);
     window.location.href = './game.html';
 };
