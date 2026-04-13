@@ -10,4 +10,9 @@
     z-index: 1;
 }
 
-.exit-btn{}
+.exit-btn{
+    @include mx.flex-between();
+    @include mx.flex-gap(10px);
+    font-size: 1em;
+
+}
