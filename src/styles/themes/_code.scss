@@ -1,17 +1,28 @@
-main[data-theme="code"]{
+main[data-theme="code"] {
     --main-background: #303131;
     --text-color: #ffffff;
     --font-family: 'Red Rose';
+    --second-font: 'Red Rose';
     --player-background: #86E9D633;
     --header-background: #303131;
     --orange-color: #F58E39;
     --blue-color: #2BB1FF;
-    --border: 1px solid #4DD5BC;
+    --border: 2px solid #4DD5BC;
     --border-hover: 1px solid #4DD5BC;
     --btn-hover: #86E9D642;
     --btn-shadow: 4px 4px 6px 0px #4DD5BC33;
+    --btn-icon-color: #FFFFFF;
     --btn-background: #86E9D633;
     --border-radius: 0px;
     --btn-padding: 16px 20px;
     --text-size: 1em;
+    --btn-hover-color: #FFFFFF;
+    --font-weight: 600;
+    --dialog-background-color: #F6F6F6;
+    --dialog-color: #303131;
+    --dialog-contiunue-btn-hover:#66CFBCB2;
+    --dialog-contiunue-btn-bg:#66CFBC;
+    --exit-btn-color: #4DD5BC;
+    --exit-btn-color-hover: #4DD5BC;
+    --dialog-contiunue-btn-hover-color: #FFFFFF;
 }

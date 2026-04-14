@@ -10,9 +10,10 @@
     z-index: 1;
 }
 
-.exit-btn{
+.secondary-btn{
     @include mx.flex-between();
     @include mx.flex-gap(10px);
-    font-size: 1em;
+    font-size: 16px;
+    
 
 }

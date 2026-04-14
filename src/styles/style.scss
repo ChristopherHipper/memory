@@ -9,11 +9,13 @@
 @forward './components/start-game';
 @forward './components/game-settings';
 @forward './components/game';
+@forward './components/field';
 
 
 @forward './themes/code';
 @forward './themes/foods';
 @forward './themes/gaming';
+@forward './themes/board-size';
 
 
 @forward './base/standart';

@@ -1,0 +1,21 @@
+@use '../abstract/mixins' as mx;
+
+.field {
+    margin-top: 54px;
+    @include mx.flex-center('unset');
+    flex-wrap: wrap;
+    gap: var(--gap);
+    padding: var(--padding);
+
+    .card {
+        height: 120px;
+        width: 105px;
+
+        >img {
+            height: 120px;
+            width: 105px;
+            background-position: center;
+            background-size: cover;
+        }
+    }
+}

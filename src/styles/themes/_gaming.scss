@@ -2,16 +2,27 @@ main[data-theme="gaming"] {
     --main-background: #294F60;
     --text-color: #ffffff;
     --font-family: 'Orbitron';
+    --second-font: 'Orbitron';
     --header-background: #FD96C933;
     --player-background: #ffffff;
     --orange-color: #EA6900;
     --blue-color: #097FC5;
     --border: 2px solid #E71C4F;
     --border-hover: 1px solid #E71C4F;
+    --btn-icon-color: #E71C4F;
     --btn-hover: #ED1B7624;
-    --btn-shadow: unset;
+    --btn-shadow: 3px 3px 5px 0px #2F2E2E33;
     --border-radius: 10px;
     --btn-background: #ED1B7614;
     --btn-padding: 8px 16px;
     --text-size: 1.5em;
+    --btn-hover-color: #FFFFFF;
+    --font-weight: 400;
+    --dialog-background-color: #F0F6F9;
+    --dialog-color: #294F60;
+    --dialog-contiunue-btn-hover: #F2C7DA14;
+    --dialog-contiunue-btn-bg: #ED1B76;
+    --exit-btn-color: #ED1B76;
+    --exit-btn-color-hover: #ED1B76;
+    --dialog-contiunue-btn-hover-color: #ED1B76;
 }

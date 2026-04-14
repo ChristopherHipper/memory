@@ -1,9 +1,8 @@
 @use '../abstract/mixins' as mx;
-@use '../themes/code' as *;
 
 .game {
-    height: 100vh;
-    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -15,7 +14,7 @@
 
 header {
     @include mx.flex-between();
-    padding: 0 110px;
+    padding: 0 24px;
     height: 100px;
     background-color: var(--header-background);
     border-radius: var(--border-radius);
@@ -31,6 +30,7 @@ header {
         >div {
             @include mx.flex-gap(8px);
             align-items: center;
+            font-weight: var(--font-weight);
         }
     }
 
@@ -38,21 +38,33 @@ header {
         @include mx.flex-gap(18px);
         align-items: center;
         font-weight: 700;
+        font-family: var(--second-font);
+        font-weight: 600;
+        font-size: 32px;
+    }
+}
+
+.button {
+    background-color: var(--btn-background);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: var(--btn-padding);
+    font-weight: 600;
+
+    >.btn-icon {
+        fill: var(--text-color);
     }
 
+    &:hover {
+        background-color: var(--btn-hover);
+        box-shadow: var(--btn-shadow);
+        outline: var(--border-hover);
+        color: var(--btn-hover-color);
 
-    .button {
-        background-color: var(--btn-background);
-        color: var(--text-color);
-        font-family: var(--font-family);
-        border: var(--border);
-        border-radius: var(--border-radius);
-        padding: var(--btn-padding);
-
-        &:hover {
-            background-color: var(--btn-hover);
-            box-shadow: var(--btn-shadow);
-            outline: var(--border-hover);
+        >.btn-icon {
+            fill: var(--btn-icon-color);
         }
     }
 }
@@ -65,4 +77,46 @@ header {
 .orange {
     color: var(--orange-color);
     font-size: var(--text-size);
+}
+
+.dialog {
+    border-radius: var(--border-radius);
+    border: 0;
+    background-color: var(--dialog-background-color);
+
+    .btn-wrapper {
+        @include mx.flex-gap(24px);
+        justify-content: center;
+    }
+
+    .exit-btn{
+        color: var(--exit-btn-color);
+        &:hover{
+            color: var(--exit-btn-color-hover);
+        }
+    }
+
+    .continue-btn {
+        background-color: var(--dialog-contiunue-btn-bg);
+        outline: var(--border-hover);
+        color: var(--btn-hover-color);
+        font-family: var(--font-family);
+        border: var(--border);
+        border-radius: var(--border-radius);
+        padding: var(--btn-padding);
+        font-weight: 600;
+
+        &:hover {
+            box-shadow: var(--btn-shadow);
+            background-color: var(--dialog-contiunue-btn-hover);
+            color: var(--dialog-contiunue-btn-hover-color);
+        }
+    }
+
+    >p {
+        text-align: center;
+        margin-bottom: 54px;
+        font-family: var(--second-font);
+        color: var(--dialog-color);
+    }
 }
