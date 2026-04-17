@@ -15,7 +15,7 @@ export function renderMain(game:Game):string {
                     </div>
                     <div class="current-player">
                         <p>Current player:</p>
-                        <img src="../../assets/img/${game.board.gameTheme}-theme/${game.currentPlayer}.png" alt="">
+                        <img id="playerImg" src="../../assets/img/${game.board.gameTheme}-theme/${game.currentPlayer}.png" alt="">
                     </div>
                     <button id="exitButton" class="button secondary-btn" command="show-modal" commandfor="my-dialog">      
                         <svg class="btn-icon" width="26" height="23" viewBox="0 0 26 23">
