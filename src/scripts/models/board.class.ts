@@ -18,17 +18,15 @@ export class Board {
                 this.stack.push(new Card(card));
             };
         };
-        return this.stack
-
+        return this.stack;
     };
 
     shuffleStack() {
         this.stack.sort(() => Math.random() - 0.5);
-        console.log(this.stack);
     };
 
-    getCard(index: number) {
-        return this.stack[index]
-    }
+    getCard(index: number):Card {
+        return this.stack[index];
+    };
 
 }

@@ -6,11 +6,11 @@ export function renderMain(game:Game):string {
                     <div class="players-wrapper">
                         <div>
                             <img src="../../assets/img/${game.board.gameTheme}-theme/${game.chosenPlayer}.png" alt="">
-                            <p class="${game.chosenPlayer}">${game.chosenPlayerPoints}</p>
+                            <p id="chosenPlayerScore" class="${game.chosenPlayer}">${game.chosenPlayerPoints}</p>
                         </div>
                         <div>
                             <img src="../../assets/img/${game.board.gameTheme}-theme/${game.opponentPlayer}.png" alt="">
-                            <p class="${game.opponentPlayer}">${game.opponentPoints}</p>
+                            <p id="opponentPlayerScore" class="${game.opponentPlayer}">${game.opponentPoints}</p>
                         </div>
                     </div>
                     <div class="current-player">

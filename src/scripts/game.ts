@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function bindEvents(game: Game) {
     let field = document.getElementById('field') as HTMLElement;
-    field.addEventListener('click', e => game.flipCard(e));
+    field.addEventListener('click', e => game.handleCardClick(e));
     const exit = document.getElementById('exitButton') as HTMLButtonElement;
     exit.addEventListener('click', initDialog);
 };
@@ -43,7 +43,6 @@ function getSettingsFromLocalStorage() {
     const board = localStorage.getItem('field') || '16 cards';
     boardSize = +board.split(' ')[0];
 };
-
 
 function initDialog() {
     const endGame = document.getElementById('endGame') as HTMLButtonElement;

@@ -12,78 +12,77 @@ export class Game {
     opponentPoints: number = 0;
     timeout = false
 
-
-
-
     constructor(chosenPlayer: string, gameTheme: string, size: number) {
         this.board = new Board(gameTheme, size);
         this.gameUI = new UI();
         this.currentPlayer = chosenPlayer;
         this.chosenPlayer = chosenPlayer;
         this.opponentPlayer = this.getOpponent(chosenPlayer);
-    }
+    };
 
     start() {
-        this.board.shuffleStack()
-    }
+        this.board.shuffleStack();
+    };
 
     getOpponent(chosenPlayer: string): string {
-        if (chosenPlayer === 'blue') {
-            return 'orange';
-        } else {
-            return 'blue';
-        };
+        return chosenPlayer === 'blue' ?  'orange' : 'blue';
     };
 
 
-    flipCard(e: PointerEvent) {
-        const card = (e.target as HTMLElement).closest(".card") as HTMLElement;
-        if (card) {
-            const selectedCard = this.board.getCard(+card.id)
-            if (this.isValidSelection(selectedCard)) return
+    handleCardClick(e: PointerEvent) {
+        const clickedElement = (e.target as HTMLElement).closest(".card") as HTMLElement;
+        if (clickedElement) {
+            const card = this.board.getCard(+clickedElement.id);
+            card.DOMelement = clickedElement;
+            if (this.isValidSelection(card)) return;
             if (this.timeout) return;
             this.gameUI.flipAnimation(card);
-            this.matchCheck(selectedCard);
+            this.matchCheck(card);
         };
     };
 
-    isValidSelection(card: Card) {
-        return card.isSelected || card.isMatched
-    }
+    isValidSelection(card: Card):boolean {
+        return card.isSelected || card.isMatched;
+    };
 
-    matchCheck(selectedCard: Card) {
-        selectedCard.isSelected = true;
-        let selectedCards = this.board.stack.filter((card) => card.isSelected)
+    matchCheck(card: Card) {
+        card.isSelected = true;
+        let selectedCards = this.board.stack.filter((card) => card.isSelected);
         if (selectedCards.length <= 1) return;
         if (this.isMatched(selectedCards)) {
-            this.match(selectedCards)
+            this.match(selectedCards);
         } else {
-            this.noMatch(selectedCards)
+            this.noMatch(selectedCards);
         };
     };
 
     match(selectedCards: Card[]) {
         selectedCards.forEach(card => {
-            card.isMatched = true
-            card.isSelected = false
+            card.isMatched = true;
+            card.isSelected = false;
+            this.gameUI.matchHighlight(card);
         });
-        this.gameUI.matchHighlight();
         selectedCards = [];
+        this.score();
+    };
+
+    score() {
         this.currentPlayer === this.chosenPlayer ? this.chosenPlayerPoints++ : this.opponentPoints++;
-        this.gameUI.updatePoints()
-    }
+        this.gameUI.updatePoints(this.chosenPlayerPoints, this.opponentPoints);
+    };
 
     noMatch(selectedCards: Card[]) {
-        this.board.stack.forEach((card) => card.isSelected = false);
         this.timeout = true;
         setTimeout(() => {
-            this.gameUI.flipReverseAnimation();
+            selectedCards.forEach((card) => {
+                card.isSelected = false;
+                this.gameUI.flipAnimation(card);
+            });
             selectedCards = [];
             this.changeCurrentPlayer();
-            this.gameUI.updateCurrentPlayer(this.currentPlayer, this.board.gameTheme);
             this.timeout = false;
         }, 500);
-    }
+    };
 
     isMatched(selectecCards: Card[]): boolean {
         return selectecCards[0].value === selectecCards[1].value;
@@ -91,5 +90,7 @@ export class Game {
 
     changeCurrentPlayer() {
         this.currentPlayer = this.currentPlayer === this.chosenPlayer ? this.opponentPlayer : this.chosenPlayer;
+        this.gameUI.updateCurrentPlayer(this.currentPlayer, this.board.gameTheme);
     };
+
 };

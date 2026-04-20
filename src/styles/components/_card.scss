@@ -2,7 +2,9 @@
         height: 120px;
         aspect-ratio: 1 / 1;
         cursor: pointer;
-        &__inner{
+        box-sizing: border-box;
+
+        &__inner {
             position: relative;
             height: 100%;
             width: 100%;
@@ -10,18 +12,26 @@
             transition: all 300ms ease-in-out;
         }
 
-        &__face{
+        &__face {
+            height: 100%;
+            width: 100%;
             position: absolute;
             inset: 0;
             backface-visibility: hidden;
 
-            &--front{
+            &--front {
                 transform: rotateY(180deg);
             }
 
         }
 
-        &.is-flipped .card__inner{
+        &.is-flipped .card__inner {
             transform: rotateY(180deg);
         }
+    }
+
+    .highlight {
+        border: var(--highlight-border) solid var(--highlight-color);
+        border-radius: var(--highlight-border-radius);
+        box-shadow: var(--highlight-shadow);
     }
