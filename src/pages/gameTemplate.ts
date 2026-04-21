@@ -37,6 +37,21 @@ export function renderMain(game:Game):string {
                 <div class="field" id="field" data-field="${game.board.boardSize}">
                 </div>
 
+                <div class="game-over d_none" id="game-over" data-field="${game.board.gameTheme}">
+                    <h1 class="game-over__headline">Game Over</h1>
+                    <p class="game-over__text">Final score</p>
+                    <div class="game-over__score-board">
+                        <div>
+                            <img src="../../assets/img/${game.board.gameTheme}-theme/${game.chosenPlayer}.png" alt="">
+                            <p id="chosenPlayerScore" class="${game.chosenPlayer}">${game.chosenPlayerPoints}</p>
+                        </div>
+                        <div>
+                            <img src="../../assets/img/${game.board.gameTheme}-theme/${game.opponentPlayer}.png" alt="">
+                            <p id="opponentPlayerScore" class="${game.opponentPlayer}">${game.opponentPoints}</p>
+                        </div>
+                    </div>
+                </div>
+
             </main>    
                 `
     

@@ -97,5 +97,13 @@ function startGame() {
     localStorage.setItem('theme',gameSettings.theme);
     localStorage.setItem('player',gameSettings.player);
     localStorage.setItem('field',gameSettings.field);
+    resetSettings();
     window.location.href = './game.html';
+};
+
+function resetSettings() {
+    const settings = document.querySelectorAll('input');
+    settings.forEach((input)=>{
+        input.checked = false;
+    });
 };

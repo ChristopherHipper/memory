@@ -3,7 +3,8 @@ import { Card } from "./card.class";
 export class Board {
     stack: Card[] = [];
     gameTheme;
-    boardSize
+    boardSize;
+    playedCards:number = 0;
 
     constructor(gameTheme: string, size: number) {
         this.gameTheme = gameTheme;

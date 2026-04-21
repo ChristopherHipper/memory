@@ -50,5 +50,5 @@ function initDialog() {
 };
 
 function resetGame() {
-    console.log('back to home and reset game');
+    window.location.href = './settings.html';
 };

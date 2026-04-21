@@ -22,10 +22,12 @@ export class Game {
 
     start() {
         this.board.shuffleStack();
+        console.log(this.board.stack);
+
     };
 
     getOpponent(chosenPlayer: string): string {
-        return chosenPlayer === 'blue' ?  'orange' : 'blue';
+        return chosenPlayer === 'blue' ? 'orange' : 'blue';
     };
 
 
@@ -41,7 +43,7 @@ export class Game {
         };
     };
 
-    isValidSelection(card: Card):boolean {
+    isValidSelection(card: Card): boolean {
         return card.isSelected || card.isMatched;
     };
 
@@ -64,6 +66,24 @@ export class Game {
         });
         selectedCards = [];
         this.score();
+        this.checkGameEnd();
+    };
+
+    checkGameEnd() {
+        this.board.stack.forEach(card => {
+            if (card.isMatched) { this.board.playedCards++; };
+        });
+        if (this.board.playedCards == this.board.boardSize) {
+            this.gameEnd();
+        } else {
+            this.board.playedCards = 0;
+        };
+    };
+
+    gameEnd() {
+        setTimeout(() => {
+            this.gameUI.gameOverOverlay();
+        }, 500);
     };
 
     score() {

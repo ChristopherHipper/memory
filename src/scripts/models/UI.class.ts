@@ -27,4 +27,12 @@ export class UI {
             opponentScoreRef.innerHTML = `${opponentScore}`;
         };
     };
+
+    gameOverOverlay(){
+        const gameOverRef = document.getElementById('game-over');
+        if (gameOverRef) {
+            gameOverRef.classList.remove('d_none')
+        }
+        
+    }
 };
