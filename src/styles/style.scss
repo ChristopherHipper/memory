@@ -1,7 +1,6 @@
 @forward './base/fonts';
 
 @forward './abstract/variables';
-@forward './abstract/function';
 @forward './abstract/mixins';
 
 
@@ -12,6 +11,7 @@
 @forward './components/field';
 @forward './components/card';
 @forward './components/game-over';
+@forward './components/end-screen';
 
 
 @forward './themes/code';

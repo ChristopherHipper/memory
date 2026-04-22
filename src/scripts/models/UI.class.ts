@@ -19,20 +19,32 @@ export class UI {
         };
     };
 
-    updatePoints(playerScore: number, opponentScore: number) {
-        const playerScoreRef = document.getElementById('chosenPlayerScore');
-        const opponentScoreRef = document.getElementById('opponentPlayerScore');
+    updatePoints(playerScore: number, opponentScore: number, id: string) {
+        const playerScoreRef = document.getElementById(id + 'chosenPlayerScore') as HTMLElement;
+        const opponentScoreRef = document.getElementById(id + 'opponentPlayerScore') as HTMLElement;
         if (playerScoreRef && opponentScoreRef) {
             playerScoreRef.innerHTML = `${playerScore}`;
             opponentScoreRef.innerHTML = `${opponentScore}`;
         };
     };
 
-    gameOverOverlay(){
-        const gameOverRef = document.getElementById('game-over');
+    gameOverOverlay() {
+        document.getElementById('content')?.classList.add('stopScroll')
+        const gameOverRef = document.getElementById('game-over') as HTMLElement;
         if (gameOverRef) {
-            gameOverRef.classList.remove('d_none')
-        }
-        
-    }
+            gameOverRef.classList.remove('d_none');
+        };
+    };
+
+    endScreen(winner: string, theme:string) {
+        const endSceenrRef = document.getElementById('end-screen')as HTMLElement;
+        const winnerRef = document.getElementById('winner')as HTMLElement;
+        const winnerImg = document.getElementById('winner-img') as HTMLImageElement;
+        if (endSceenrRef) {
+            winnerRef.innerHTML = `${winner.charAt(0).toUpperCase() + winner.slice(1)} Player`;
+            winnerRef.classList.add(winner)
+            winnerImg.src = `../../assets/img/${theme}-theme/${winner}-winner.png`;
+            endSceenrRef.classList.remove('d_none');
+        };
+    };
 };

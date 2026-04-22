@@ -24,6 +24,8 @@ function bindEvents(game: Game) {
     field.addEventListener('click', e => game.handleCardClick(e));
     const exit = document.getElementById('exitButton') as HTMLButtonElement;
     exit.addEventListener('click', initDialog);
+    const homeBtn = document.getElementById('home-btn') as HTMLButtonElement;
+    homeBtn.addEventListener('click', resetGame);
 };
 
 function renderField(game: Game) {

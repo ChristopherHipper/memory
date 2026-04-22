@@ -10,20 +10,21 @@ export class Game {
     opponentPlayer;
     chosenPlayerPoints: number = 0;
     opponentPoints: number = 0;
-    timeout = false
+    timeout = false;
+    winner;
 
     constructor(chosenPlayer: string, gameTheme: string, size: number) {
         this.board = new Board(gameTheme, size);
         this.gameUI = new UI();
         this.currentPlayer = chosenPlayer;
         this.chosenPlayer = chosenPlayer;
+        this.winner = ''
         this.opponentPlayer = this.getOpponent(chosenPlayer);
     };
 
     start() {
         this.board.shuffleStack();
         console.log(this.board.stack);
-
     };
 
     getOpponent(chosenPlayer: string): string {
@@ -81,14 +82,27 @@ export class Game {
     };
 
     gameEnd() {
+        this.gameUI.updatePoints(this.chosenPlayerPoints, this.opponentPoints, 'final');
         setTimeout(() => {
             this.gameUI.gameOverOverlay();
-        }, 500);
+            this.getWinner();
+            setTimeout(()=>{
+                this.gameUI.endScreen(this.winner, this.board.gameTheme);
+            },3000);
+        }, 700);
+    };
+
+    getWinner(){
+        if (this.chosenPlayerPoints >= this.opponentPoints) {
+            this.winner = this.chosenPlayer;
+        } else if(this.chosenPlayerPoints < this.opponentPoints){
+            this.winner = this.opponentPlayer;
+        };
     };
 
     score() {
         this.currentPlayer === this.chosenPlayer ? this.chosenPlayerPoints++ : this.opponentPoints++;
-        this.gameUI.updatePoints(this.chosenPlayerPoints, this.opponentPoints);
+        this.gameUI.updatePoints(this.chosenPlayerPoints, this.opponentPoints, '');
     };
 
     noMatch(selectedCards: Card[]) {

@@ -43,13 +43,22 @@ export function renderMain(game:Game):string {
                     <div class="game-over__score-board">
                         <div>
                             <img src="../../assets/img/${game.board.gameTheme}-theme/${game.chosenPlayer}.png" alt="">
-                            <p id="chosenPlayerScore" class="${game.chosenPlayer}">${game.chosenPlayerPoints}</p>
+                            <p id="finalchosenPlayerScore" class="${game.chosenPlayer}">${game.chosenPlayerPoints}</p>
                         </div>
                         <div>
                             <img src="../../assets/img/${game.board.gameTheme}-theme/${game.opponentPlayer}.png" alt="">
-                            <p id="opponentPlayerScore" class="${game.opponentPlayer}">${game.opponentPoints}</p>
+                            <p id="finalopponentPlayerScore" class="${game.opponentPlayer}">${game.opponentPoints}</p>
                         </div>
                     </div>
+                </div>
+
+                <div class="end-screen d_none" id="end-screen" data-field="${game.board.gameTheme}">
+                    <div>
+                        <p class="end-screen__text">The winner is</p>
+                        <h2 class="end-screen__winner" id="winner"></h2>
+                    </div>
+                    <img id="winner-img" src="../../assets/img/${game.board.gameTheme}-theme/-winner.png" alt="">
+                    <button id="home-btn" class="button secondary-btn">Back to start</button>
                 </div>
 
             </main>    
