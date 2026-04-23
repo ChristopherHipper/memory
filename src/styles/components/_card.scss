@@ -21,6 +21,8 @@
 
             &--front {
                 transform: rotateY(180deg);
+                border-radius: var(--highlight-border-radius);
+                object-fit: cover;
             }
 
         }

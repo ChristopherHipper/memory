@@ -10,7 +10,12 @@ let gameSettings: Settings = {
     field: "",
 };
 
-function init(): void {
+/**
+ * Initializes the settings page by wiring UI interactions and rendering the preview.
+ * Attaches a click listener to the form to handle setting selection and
+ * populates the preview container with the current settings template.
+ */
+function init(){
     const form = document.querySelector("form") as HTMLFormElement;
     if (form) {
         form.addEventListener('click', (e) => { selectSettings(e) });
@@ -20,7 +25,14 @@ function init(): void {
     };
 };
 
-function selectSettings(e: PointerEvent): void {
+/**
+ * Handles user interaction within the settings form.
+ * Determines the clicked label, updates the selected UI state,
+ * applies the corresponding game setting, and refreshes the button state.
+ *
+ * @param e - The pointer event triggered by a user click.
+ */
+function selectSettings(e: PointerEvent){
     if (e.target) {
         const label = (e.target as HTMLElement).closest("label") as HTMLLabelElement;
         if (label) {
@@ -36,7 +48,15 @@ function selectSettings(e: PointerEvent): void {
     };
 };
 
-function setSelectClass(fieldset: HTMLElement, label: HTMLLabelElement): void {
+/**
+ * Updates the visual selection state within a fieldset.
+ * Removes the 'active' class from all elements and applies it
+ * to the selected label's indicator element.
+ *
+ * @param fieldset - The container holding selectable elements.
+ * @param label - The label element that was selected.
+ */
+function setSelectClass(fieldset: HTMLElement, label: HTMLLabelElement){
     const activeImges = fieldset.querySelectorAll(".active");
     activeImges.forEach(img => {
         img.classList.remove('active');
@@ -47,7 +67,14 @@ function setSelectClass(fieldset: HTMLElement, label: HTMLLabelElement): void {
     };
 };
 
-function setGameSetting(label: HTMLLabelElement): void {
+/**
+ * Updates the game settings based on the selected label.
+ * Determines which setting to modify by inspecting the parent element's ID
+ * and applies the corresponding value. Also refreshes the preview display.
+ *
+ * @param label - The label element containing the selected setting value.
+ */
+function setGameSetting(label: HTMLLabelElement){
     if (label.parentElement) {
         const value = label.innerText;
         const valueArr = value.split(" ");
@@ -67,7 +94,12 @@ function setGameSetting(label: HTMLLabelElement): void {
     };
 };
 
-function setBtnState(): void {
+/**
+ * Updates the state of the game start button.
+ * Enables the button when all required game settings are defined
+ * and attaches the click handler to start the game.
+ */
+function setBtnState(){
     const gameBtn = document.getElementById('game-btn') as HTMLButtonElement;
     if (gameBtn) {
         if (gameSettings.field && gameSettings.player && gameSettings.theme) {
@@ -77,6 +109,9 @@ function setBtnState(): void {
     };
 };
 
+/**
+ * Generates the HTML template for the current game settings preview.
+ */
 function settingsTemplate(): string {
     return `<img class="preview-theme" src="../../assets/img/${gameSettings.theme}-theme.png" alt="choosen Theme">
             <div class="choosen-settings" >
@@ -93,6 +128,10 @@ function settingsTemplate(): string {
         `
 };
 
+/**
+ * Starts the game by persisting selected settings to localStorage,
+ * resetting the current settings state, and navigating to the game page.
+ */
 function startGame() {
     localStorage.setItem('theme',gameSettings.theme);
     localStorage.setItem('player',gameSettings.player);
@@ -101,6 +140,10 @@ function startGame() {
     window.location.href = './game.html';
 };
 
+/**
+ * Resets all input elements in the settings form.
+ * Unchecks all input fields to restore the default state.
+ */
 function resetSettings() {
     const settings = document.querySelectorAll('input');
     settings.forEach((input)=>{
