@@ -76,12 +76,21 @@ export class UI {
     endScreen(winner: string, theme: string) {
         const endSceenrRef = document.getElementById('end-screen') as HTMLElement;
         const winnerRef = document.getElementById('winner') as HTMLElement;
-        const winnerImg = document.getElementById('winner-img') as HTMLImageElement;
         if (endSceenrRef) {
             winnerRef.innerHTML = `${winner.charAt(0).toUpperCase() + winner.slice(1)} Player`;
             winnerRef.classList.add(winner)
-            winnerImg.src = `../../assets/img/${theme}-theme/${winner}-winner.png`;
             endSceenrRef.classList.remove('d_none');
         };
     };
+
+    /**
+     * Sets the winner image.
+     *
+     * @param winner - The winning player identifier.
+     * @param theme - The selected game theme used for the winner image path.
+     */
+    winnerSrc(winner: string, theme: string) {
+        const winnerImg = document.getElementById('winner-img') as HTMLImageElement;
+        winnerImg.src = `../../assets/img/${theme}-theme/${winner}-winner.png`;
+    }
 };

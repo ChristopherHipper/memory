@@ -28,7 +28,6 @@ export class Game {
      */
     start() {
         this.board.shuffleStack();
-        console.log(this.board.stack);
     };
 
     /**
@@ -130,9 +129,10 @@ export class Game {
      */
     gameEnd() {
         this.gameUI.updatePoints(this.chosenPlayerPoints, this.opponentPoints, 'final');
+        this.getWinner();
+        this.gameUI.winnerSrc(this.winner, this.board.gameTheme)
         setTimeout(() => {
             this.gameUI.gameOverOverlay();
-            this.getWinner();
             setTimeout(()=>{
                 this.gameUI.endScreen(this.winner, this.board.gameTheme);
             },3000);

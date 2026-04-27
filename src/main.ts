@@ -10,7 +10,7 @@ const startBtn = document.getElementById('start-btn') as HTMLElement;
  */
 function init(){
   startBtn!.addEventListener('click', () => {
-    window.location.href = './src/pages/settings.html';
+    window.location.href = '/Memory/src/pages/settings.html';
   });
 };
 

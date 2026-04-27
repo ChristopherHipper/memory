@@ -57,7 +57,7 @@ export function renderMain(game:Game):string {
                         <p class="end-screen__text">The winner is</p>
                         <h2 class="end-screen__winner" id="winner"></h2>
                     </div>
-                    <img id="winner-img" src="../../assets/img/${game.board.gameTheme}-theme/-winner.png" alt="">
+                    <img id="winner-img" src="" alt="">
                     <button id="home-btn" class="button secondary-btn">Back to start</button>
                 </div>
 
