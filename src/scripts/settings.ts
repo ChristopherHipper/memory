@@ -15,13 +15,42 @@ let gameSettings: Settings = {
  * Attaches a click listener to the form to handle setting selection and
  * populates the preview container with the current settings template.
  */
-function init(){
+function init() {
     const form = document.querySelector("form") as HTMLFormElement;
     if (form) {
         form.addEventListener('click', (e) => { selectSettings(e) });
+        form.addEventListener('mouseover', (e) => { setPreviewImg(e); });
     };
     if (previewSettings) {
         previewSettings.innerHTML = settingsTemplate();
+    };
+};
+
+function resetPreviewImg(e: MouseEvent) {
+    const gamePrevImgRef = document.getElementById('gamePrevImg') as HTMLImageElement;
+    if (gamePrevImgRef) {
+        gamePrevImgRef.src = `../../assets/img/${gameSettings.theme}-theme.png`;
+    };
+};
+
+function setPreviewImg(e: MouseEvent) {
+    if (e.target) {
+        const label = (e.target as HTMLElement).closest("label") as HTMLLabelElement;
+        const gamePrevImgRef = document.getElementById('gamePrevImg') as HTMLImageElement;
+        if (label) {
+            const fieldset = label.parentElement as HTMLElement;
+            label.addEventListener('mouseleave', (e) => { resetPreviewImg(e); });
+            if (fieldset) {
+                if (fieldset.id !== 'theme') {
+                    return;
+                };
+                if (gamePrevImgRef) {
+                    const value = label.innerText;
+                    const valueArr = value.split(" ");
+                    gamePrevImgRef.src = `../../assets/img/${valueArr[0].toLocaleLowerCase()}-theme.png`;
+                };
+            };
+        };
     };
 };
 
@@ -32,7 +61,7 @@ function init(){
  *
  * @param e - The pointer event triggered by a user click.
  */
-function selectSettings(e: PointerEvent){
+function selectSettings(e: PointerEvent) {
     if (e.target) {
         const label = (e.target as HTMLElement).closest("label") as HTMLLabelElement;
         if (label) {
@@ -56,7 +85,7 @@ function selectSettings(e: PointerEvent){
  * @param fieldset - The container holding selectable elements.
  * @param label - The label element that was selected.
  */
-function setSelectClass(fieldset: HTMLElement, label: HTMLLabelElement){
+function setSelectClass(fieldset: HTMLElement, label: HTMLLabelElement) {
     const activeImges = fieldset.querySelectorAll(".active");
     activeImges.forEach(img => {
         img.classList.remove('active');
@@ -74,7 +103,7 @@ function setSelectClass(fieldset: HTMLElement, label: HTMLLabelElement){
  *
  * @param label - The label element containing the selected setting value.
  */
-function setGameSetting(label: HTMLLabelElement){
+function setGameSetting(label: HTMLLabelElement) {
     if (label.parentElement) {
         const value = label.innerText;
         const valueArr = value.split(" ");
@@ -99,7 +128,7 @@ function setGameSetting(label: HTMLLabelElement){
  * Enables the button when all required game settings are defined
  * and attaches the click handler to start the game.
  */
-function setBtnState(){
+function setBtnState() {
     const gameBtn = document.getElementById('game-btn') as HTMLButtonElement;
     if (gameBtn) {
         if (gameSettings.field && gameSettings.player && gameSettings.theme) {
@@ -113,9 +142,9 @@ function setBtnState(){
  * Generates the HTML template for the current game settings preview.
  */
 function settingsTemplate(): string {
-    return `<img class="preview-theme" src="../../assets/img/${gameSettings.theme}-theme.png" alt="choosen Theme">
+    return `<img id="gamePrevImg" class="preview-theme" src="../../assets/img/${gameSettings.theme}-theme.png" alt="choosen Theme">
             <div class="choosen-settings" >
-                <p>${gameSettings.theme.charAt(0).toUpperCase()+ gameSettings.theme.slice(1)} Theme</p>
+                <p>${gameSettings.theme.charAt(0).toUpperCase() + gameSettings.theme.slice(1)} Theme</p>
                 <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
                 <p>${gameSettings.player} Player</p>
                 <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
@@ -133,9 +162,9 @@ function settingsTemplate(): string {
  * resetting the current settings state, and navigating to the game page.
  */
 function startGame() {
-    localStorage.setItem('theme',gameSettings.theme);
-    localStorage.setItem('player',gameSettings.player);
-    localStorage.setItem('field',gameSettings.field);
+    localStorage.setItem('theme', gameSettings.theme);
+    localStorage.setItem('player', gameSettings.player);
+    localStorage.setItem('field', gameSettings.field);
     resetSettings();
     window.location.href = './game.html';
 };
@@ -146,7 +175,7 @@ function startGame() {
  */
 function resetSettings() {
     const settings = document.querySelectorAll('input');
-    settings.forEach((input)=>{
+    settings.forEach((input) => {
         input.checked = false;
     });
 };

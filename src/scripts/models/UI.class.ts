@@ -47,8 +47,8 @@ export class UI {
      * @param id - The base DOM id used to locate score elements.
      */
     updatePoints(playerScore: number, opponentScore: number, id: string) {
-        const playerScoreRef = document.getElementById(id + 'chosenPlayerScore') as HTMLElement;
-        const opponentScoreRef = document.getElementById(id + 'opponentPlayerScore') as HTMLElement;
+        const playerScoreRef = document.getElementById(id + 'chosen-player-score') as HTMLElement;
+        const opponentScoreRef = document.getElementById(id + 'opponent-player-score') as HTMLElement;
         if (playerScoreRef && opponentScoreRef) {
             playerScoreRef.innerHTML = `${playerScore}`;
             opponentScoreRef.innerHTML = `${opponentScore}`;

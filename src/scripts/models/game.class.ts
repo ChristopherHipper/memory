@@ -128,7 +128,7 @@ export class Game {
      * and displays the end screen after a delay.
      */
     gameEnd() {
-        this.gameUI.updatePoints(this.chosenPlayerPoints, this.opponentPoints, 'final');
+        this.gameUI.updatePoints(this.chosenPlayerPoints, this.opponentPoints, 'final-');
         this.getWinner();
         this.gameUI.winnerSrc(this.winner, this.board.gameTheme)
         setTimeout(() => {

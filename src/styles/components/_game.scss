@@ -27,10 +27,18 @@ header {
         background-color: var(--player-background);
         border-radius: var(--border-radius);
 
-        >div {
-            @include mx.flex-gap(8px);
+        >ul {
+            @include mx.flex-gap(40px);
             align-items: center;
             font-weight: var(--font-weight);
+            padding: 0;
+            margin: 0;
+            >li>figure{
+                @include mx.flex-gap(3px);
+                margin: 0;
+                max-height: 28px;
+                align-items: center
+            }
         }
     }
 

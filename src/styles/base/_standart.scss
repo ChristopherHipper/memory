@@ -30,6 +30,7 @@ button {
     cursor: pointer;
     border: none;
     background-color: transparent;
+    padding: 0;
 }
 
 fieldset {
@@ -42,12 +43,16 @@ label {
     cursor: pointer;
 }
 
-.d_none{
-    display: none;
+.d_none {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
 }
 
-.stopScroll{
+.stopScroll {
     overflow: hidden;
 }
 
-
+ul {
+    list-style-type: none;
+}

@@ -9,6 +9,12 @@
     background-color: var(--game-over-bg);
     @include mx.flex-center();
 
+    &__header{
+        flex-direction: column;
+        height: unset;
+        background-color: unset;
+    }
+
     &__headline {
         font-family: var(--second-font);
         font-size: 120px;
@@ -28,10 +34,11 @@
         background-color: var(--player-background);
         border-radius: var(--border-radius);
 
-        >div {
-            @include mx.flex-gap(8px);
-            align-items: center;
-            font-weight: var(--font-weight);
+        >li>figure {
+            @include mx.flex-gap(3px);
+            margin: 0;
+            max-height: 28px;
+            align-items: center
         }
     }
 }
