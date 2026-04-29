@@ -93,4 +93,17 @@ export class UI {
         const winnerImg = document.getElementById('winner-img') as HTMLImageElement;
         winnerImg.src = `../../assets/img/${theme}-theme/${winner}-winner.png`;
     }
+
+
+    /**
+     * Updates the state of a card and reflects it in the DOM.
+     * Sets the card's internal state and updates the aria-label for accessibility.
+     *
+     * @param sate - The new state to assign to the card.
+     * @param card - The card whose state should be updated.
+     */
+    updateCardState(sate: string, card: Card) {
+        card.state = sate;
+        card.DOMelement?.setAttribute("aria-label", `${card.state} memory card`);
+    };
 };

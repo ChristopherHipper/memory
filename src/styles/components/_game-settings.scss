@@ -112,17 +112,32 @@
 
 .choosen-settings {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: #F6F6F6;
     padding: 0.5rem;
     font-size: 1em;
     gap: 6px;
     flex-direction: column;
+    min-width: 760px;
 
     @include mx.respond(md) {
         flex-direction: row;
         gap: 16px;
+    }
+
+    &__theme {
+        text-align: center;
+        min-width: 170px;
+    }
+
+    &__player {
+        text-align: center;
+        min-width: 150px;
+    }
+
+    &__board {
+        text-align: center;
+        min-width: 153px;
     }
 }
 
@@ -130,6 +145,8 @@
     width: 100%;
 
     @include mx.respond(md) {
+        min-width: 412px;
+        min-height: 460px;
         width: unset;
     }
 }
@@ -144,6 +161,7 @@
 
 .game-btn {
     z-index: 1;
+
     .start-img {
         transition: all 0.2s ease-in-out;
     }

@@ -52,6 +52,7 @@ export class Game {
         if (clickedElement) {
             const card = this.board.getCard(+clickedElement.id);
             card.DOMelement = clickedElement;
+            this.gameUI.updateCardState('Revealed',card);
             if (this.isValidSelection(card)) return;
             if (this.timeout) return;
             this.gameUI.flipAnimation(card);
@@ -174,6 +175,7 @@ export class Game {
             selectedCards.forEach((card) => {
                 card.isSelected = false;
                 this.gameUI.flipAnimation(card);
+                this.gameUI.updateCardState('Hidden',card);
             });
             selectedCards = [];
             this.changeCurrentPlayer();

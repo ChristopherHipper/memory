@@ -1,5 +1,9 @@
 import '../styles/style.scss';
 import { Settings } from './interface';
+import { settingsTemplate } from "../pages/settingsTemplate";
+import { settingsTheme } from "../pages/settingsTemplate";
+import { settingsPlayer } from "../pages/settingsTemplate";
+import { settingsBoard } from "../pages/settingsTemplate";
 
 document.addEventListener("DOMContentLoaded", init);
 const previewSettings = document.getElementById('settings') as HTMLElement;
@@ -22,10 +26,16 @@ function init() {
         form.addEventListener('mouseover', (e) => { setPreviewImg(e); });
     };
     if (previewSettings) {
-        previewSettings.innerHTML = settingsTemplate();
+        previewSettings.innerHTML = settingsTemplate(gameSettings);
     };
 };
 
+/**
+ * Resets the preview image to the currently selected theme.
+ * Restores the default preview after a hover interaction ends.
+ *
+ * @param e - The mouse event triggered on mouse leave.
+ */
 function resetPreviewImg(e: MouseEvent) {
     const gamePrevImgRef = document.getElementById('gamePrevImg') as HTMLImageElement;
     if (gamePrevImgRef) {
@@ -33,6 +43,13 @@ function resetPreviewImg(e: MouseEvent) {
     };
 };
 
+/**
+ * Updates the preview image on hover over a theme option.
+ * Temporarily changes the preview image based on the hovered label
+ * and restores it on mouse leave.
+ *
+ * @param e - The mouse event triggered by hovering over a label.
+ */
 function setPreviewImg(e: MouseEvent) {
     if (e.target) {
         const label = (e.target as HTMLElement).closest("label") as HTMLLabelElement;
@@ -97,29 +114,34 @@ function setSelectClass(fieldset: HTMLElement, label: HTMLLabelElement) {
 };
 
 /**
- * Updates the game settings based on the selected label.
- * Determines which setting to modify by inspecting the parent element's ID
- * and applies the corresponding value. Also refreshes the preview display.
+ * Updates game settings based on the selected label and refreshes
+ * the corresponding UI section.
+ * Determines which setting to update via the parent element's ID
+ * and renders the updated partial template.
  *
  * @param label - The label element containing the selected setting value.
  */
 function setGameSetting(label: HTMLLabelElement) {
+    const settingsThemeRef = document.getElementById('settings-theme') as HTMLElement;
+    const settingsPlayerRef = document.getElementById('settings-player') as HTMLElement;
+    const settingsBoardRef = document.getElementById('settings-board') as HTMLElement;
     if (label.parentElement) {
         const value = label.innerText;
         const valueArr = value.split(" ");
         const listId = label.parentElement.id;
         if (listId === "field") {
             gameSettings.field = value;
+            settingsBoardRef.innerHTML = settingsBoard(gameSettings);
         } else if (listId === "theme") {
             gameSettings.theme = valueArr[0].toLocaleLowerCase();
+            settingsThemeRef.innerHTML = settingsTheme(gameSettings);
         } else if (listId === "player") {
             gameSettings.player = value.toLocaleLowerCase();
+            settingsPlayerRef.innerHTML = settingsPlayer(gameSettings);
         } else {
             return
         };
-        if (previewSettings) {
-            previewSettings.innerHTML = settingsTemplate();
-        };
+        
     };
 };
 
@@ -141,21 +163,7 @@ function setBtnState() {
 /**
  * Generates the HTML template for the current game settings preview.
  */
-function settingsTemplate(): string {
-    return `<img id="gamePrevImg" class="preview-theme" src="../../assets/img/${gameSettings.theme}-theme.png" alt="choosen Theme">
-            <div class="choosen-settings" >
-                <p>${gameSettings.theme.charAt(0).toUpperCase() + gameSettings.theme.slice(1)} Theme</p>
-                <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
-                <p>${gameSettings.player} Player</p>
-                <img class="seperator" src="../../assets/img/seperator.png" alt="seperator">
-                <p>Board ${gameSettings.field}</p>
-                <button disabled class="primary-btn game-btn" id="game-btn">
-                    <img class="start-img" src="../../assets/img/start.png" alt="start">
-                    Start
-                </button>
-             </div>
-        `
-};
+
 
 /**
  * Starts the game by persisting selected settings to localStorage,

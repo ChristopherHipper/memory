@@ -47,5 +47,4 @@ export class Board {
     getCard(index: number):Card {
         return this.stack[index];
     };
-
 }
